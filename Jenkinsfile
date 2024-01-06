@@ -18,10 +18,10 @@ pipeline {
                     def remoteDirectory = '/var/www/html/'  // Adjust the path based on your web server configuration
 
                     // Clone the repository on the web server
-                    sh "ssh ${remoteUser}@${remoteServer} 'cd /var/www/html && git clone https://github.com/Ayushchouhans/webserver.git'"
+                    sh "ssh ${remoteUser}@${remoteServer} 'rm -rf /var/www/html/*'"
 
                     // Copy files to the web server directory, override existing files
-                // sh "ssh ${remoteUser}@${remoteServer} 'mv -r /tmp/webserver/* ${remoteDirectory}'"
+                    sh "ssh ${remoteUser}@${remoteServer} 'cd /var/www/html && git clone https://github.com/Ayushchouhans/webserver.git'"
 
                     // Restart Apache on the web server
                     sh "ssh ${remoteUser}@${remoteServer} 'systemctl restart apache2'"
