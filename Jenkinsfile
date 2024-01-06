@@ -14,20 +14,20 @@ pipeline {
                 script {
                     // Define the variables
                     def remoteServer = '54.176.250.229'
-                    def remoteUser = 'ubuntu'
+                    def remoteUser = 'root'
                     def remoteDirectory = '/var/www/html'  // Adjust the path based on your web server configuration
 
                     // Clone the repository on the web server
                     sh "ssh ${remoteUser}@${remoteServer} 'git clone https://github.com/Ayushchouhans/webserver.git /tmp/deploy-repo'"
 
                     // Copy files to the web server directory, override existing files
-                    sh "ssh ${remoteUser}@${remoteServer} 'sudo cp -r /tmp/deploy-repo/* ${remoteDirectory}'"
+                    sh "ssh ${remoteUser}@${remoteServer} 'cp -r /tmp/deploy-repo/* ${remoteDirectory}'"
 
                     // Restart Apache on the web server
-                    sh "ssh ${remoteUser}@${remoteServer} 'sudo systemctl restart apache2'"
+                    sh "ssh ${remoteUser}@${remoteServer} 'systemctl restart apache2'"
 
                     // Clean up: Delete the temporary repository on the web server
-                    sh "ssh ${remoteUser}@${remoteServer} 'sudo rm -rf /tmp/deploy-repo'"
+                    sh "ssh ${remoteUser}@${remoteServer} 'rm -rf /tmp/deploy-repo'"
                 }
             }
         }
