@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     // Define the variables
-                    def remoteServer = '18.144.11.140'
+                    def remoteServer = '54.153.97.171'
                     def remoteUser = 'root'
                     def remoteDirectory = '/var/www/html/'  // Adjust the path based on your web server configuration
 
